@@ -1,0 +1,1 @@
+In this project, we have created a class that will find the shortest path for a Chess Knight from a starting position to an end position, using a PolyTree data structure. Both the start and end positions should be on a standard 8x8 chess board.
