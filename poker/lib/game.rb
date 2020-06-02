@@ -1,8 +1,7 @@
-require 'byebug'
 require_relative 'player.rb'
 require_relative 'hand.rb'
 require_relative 'deck.rb'
-#Note, to deal with purged players, don't delete them from array, just don't unfold them when the round ends, so that they are permanently folded
+
 class Game
 	attr_reader :players, :pot, :deck, :currentbet, :any_fold
 
