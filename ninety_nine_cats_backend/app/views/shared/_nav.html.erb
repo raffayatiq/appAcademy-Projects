@@ -1,0 +1,53 @@
+<nav>
+	<% if logged_in? %>
+		<ul>
+			<li>Logged in as: <%= current_user.username %></li>
+			<li>
+				<form action="<%= session_url(current_session.id) %>" method="POST">
+					<input type="hidden" name="_method" value="delete">
+
+					<input 
+						type="hidden" 
+						name="authenticity_token" 
+						value="<%= form_authenticity_token %>"
+					/>
+
+					<input type="submit" value="Log Out">
+				</form>
+			</li>
+		</ul>
+		<ul>
+			Currently logged in these devices:
+			<% current_user.sessions.each do |session| %>
+			<% next if session == current_session %>
+				<li>
+					<%= session.device %>
+					<form action="<%= session_url(session.id) %>" method="POST">
+						<input type="hidden" name="_method" value="delete">
+
+						<input 
+							type="hidden" 
+							name="authenticity_token" 
+							value="<%= form_authenticity_token %>"
+						/>
+
+						<input type="submit" value="Log Out">
+					</form>
+				</li>
+			<% end %>
+		</ul>
+	<% else %>
+		<ul>
+			<li>
+				<form action="<%= new_user_url %>">
+					<input type="submit" value="Sign Up">
+				</form>
+			</li>
+			<li>
+				<form action="<%= new_session_url %>">
+					<input type="submit" value="Log In">
+				</form>
+			</li>
+		</ul>
+	<% end %>
+</nav>
